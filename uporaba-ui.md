@@ -149,8 +149,6 @@ V kodi pustiš funkcijo (npr. prenesi_podatke()), ki te strani prenese s spleta.
 V datoteko README.md napišeš: "Ko prvič zaženete projekt, poženite skripto, da se ustvari mapa surovi_podatki."
 
 Na ta način tvoj GitHub repozitorij ostane lahek (le nekaj kilobajtov), čist in profesionalen.
-<<<<<<< HEAD
-=======
 
 
 # 4. Ali je kaksna kjiznica v pythonu ki ima vsa imena drzav in raznih states?
@@ -243,4 +241,3 @@ Države + ameriške zvezne države + mesta → geonamescache.
 Samo ameriške states → us.
 
 Če pa želiš z regexom prepoznati imena držav ali zveznih držav v poljubnem besedilu, je pycountry skupaj z re zelo dobra kombinacija.
->>>>>>> 31310df (Začel s procesiranjem zajetih podatkov.)
