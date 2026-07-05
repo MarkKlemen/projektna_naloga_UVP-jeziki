@@ -9,7 +9,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0"} #rabimo saj, drugace vrne statusno kodo 
 vsebina = requests.get(url, headers=HEADERS)
 surova_koda = vsebina.text
 
-def podrobnosti_o_jezikih(vsebina):
+def shrani_jezike(vsebina):
     vsi_linki = re.findall(r'<a href="(.+\.(?:htm|php|htm#ls|htm#us))".+>', vsebina) #""?:"" pomeni, da so tisti oklepaji nezajemalni
     nerelevantno = ['index', 'about', 'contact', 'search', 'news', 'copyright', 
                   'donations', 'advertising', 'sitemap', 'links', 'books', 

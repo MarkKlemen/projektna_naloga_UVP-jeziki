@@ -149,3 +149,98 @@ V kodi pustiš funkcijo (npr. prenesi_podatke()), ki te strani prenese s spleta.
 V datoteko README.md napišeš: "Ko prvič zaženete projekt, poženite skripto, da se ustvari mapa surovi_podatki."
 
 Na ta način tvoj GitHub repozitorij ostane lahek (le nekaj kilobajtov), čist in profesionalen.
+<<<<<<< HEAD
+=======
+
+
+# 4. Ali je kaksna kjiznica v pythonu ki ima vsa imena drzav in raznih states?
+
+Ja, obstaja več knjižnic. Najbolj uporabne so:
+
+1. pycountry (najbolj priporočljiva)
+
+Vsebuje praktično vse države po standardu ISO 3166, jezike, valute itd.
+
+Namestitev:
+
+pip install pycountry
+
+Primer:
+
+import pycountry
+
+# Izpis vseh držav
+for country in pycountry.countries:
+    print(country.name)
+
+Primer iskanja:
+
+import pycountry
+
+drzava = pycountry.countries.get(alpha_2="SI")
+print(drzava.name)       # Slovenia
+
+drzava = pycountry.countries.get(name="Germany")
+print(drzava.alpha_3)    # DEU
+
+Lahko tudi "fuzzy" iskanje:
+
+print(pycountry.countries.search_fuzzy("Slovenia"))
+print(pycountry.countries.search_fuzzy("USA"))
+2. us (za ameriške zvezne države)
+
+Če potrebuješ samo ameriške states:
+
+pip install us
+
+Primer:
+
+import us
+
+print(us.states.CA.name)      # California
+print(us.states.CA.abbr)      # CA
+
+for state in us.states.STATES:
+    print(state.name)
+3. pycountry-convert
+
+Če potrebuješ še celine:
+
+import pycountry_convert as pc
+
+continent = pc.country_alpha2_to_continent_code("SI")
+print(continent)  # EU
+4. geonamescache
+
+To je zelo uporabna knjižnica, če potrebuješ več kot samo države.
+
+Namestitev:
+
+pip install geonamescache
+
+Vsebuje:
+
+države,
+ameriške zvezne države,
+mesta,
+celine,
+ISO kode.
+
+Primer:
+
+import geonamescache
+
+gc = geonamescache.GeonamesCache()
+
+countries = gc.get_countries()
+print(countries["SI"]["name"])   # Slovenia
+
+us_states = gc.get_us_states()
+print(us_states["CA"]["name"])   # California
+Katero izbrati?
+Samo države → pycountry (to je običajno najboljša izbira).
+Države + ameriške zvezne države + mesta → geonamescache.
+Samo ameriške states → us.
+
+Če pa želiš z regexom prepoznati imena držav ali zveznih držav v poljubnem besedilu, je pycountry skupaj z re zelo dobra kombinacija.
+>>>>>>> 31310df (Začel s procesiranjem zajetih podatkov.)
