@@ -241,3 +241,35 @@ Države + ameriške zvezne države + mesta → geonamescache.
 Samo ameriške states → us.
 
 Če pa želiš z regexom prepoznati imena držav ali zveznih držav v poljubnem besedilu, je pycountry skupaj z re zelo dobra kombinacija.
+
+# 5. Kako lahko take znake pretvoris v berljivo obliko v pythonu: w\&\#x00E9;\&\#x00E9;?
+
+
+Te znake (npr. &#x00E9;) imenujejo HTML entitete (natančneje heksadecimalne znakovne reference). V tvojem primeru &#x00E9; predstavlja mali e z ostrivcem (é), niz w&#x00E9;&#x00E9; pa je v resnici beseda "wéé".
+
+V Pythonu lahko to v berljivo obliko pretvoriš izjemno preprosto s pomočjo vgrajene knjižnice html.
+
+Tukaj sta dva načina, kako to storiš:
+
+1. Uporaba vgrajenega modula html (Najboljša praksa)
+Python ima že pripravljeno funkcijo html.unescape(), ki samodejno zazna in pretvori vse HTML entitete v navaden tekst.
+
+Python
+import html
+
+kodiran_niz = "w&#x00E9;&#x00E9;"
+berljiv_niz = html.unescape(kodiran_niz)
+
+print(berljiv_niz)  # Izpis: wéé
+2. Kaj pa, če imaš celotno datoteko ali JSON?
+Če podatke bereš iz spleta ali datoteke, lahko funkcijo uporabiš neposredno na prejetem tekstu:
+
+Python
+import html
+
+# Primer z več besedila
+html_tekst = "Kavarna &#x00E9;fe in sla&#x0161;&#x010D;arna"
+cist_tekst = html.unescape(html_tekst)
+
+print(cist_tekst)  # Izpis: Kavarna éfe in slaščarna
+Opomba: Če bi kdaj naletel na obratno težavo (da želiš npr. é pretvoriti nazaj v &eacute; ali &#x00E9;), lahko uporabiš funkcijo html.escape().
